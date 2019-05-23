@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  {% load staticfiles %}
+  {% load mytags %}
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>{% block site_title %}blog{% endblock site_title %}</title>
+  <link rel="shortcut icon" href="{% url '' %}">
+  <meta name="keywords" content="Python,Django,Java,sql,linux,javascript,jquery,git,教程,软件,编程,开发,运维,云计算,网络,互联网">
+  <meta name="description" content="人生苦短，我学Python！">
+  <meta http-equiv="X-UA-Compatible" content="IE=Chrome">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <!-- amazeui -->
+    <link href="{% static 'amazeui/assets/css/amazeui.min.css' %}" rel="stylesheet">
+    <!-- <link th:href="/static/amazeui/assets/css/admin.css" rel="stylesheet"> -->
+    <!-- 当前站点CSS样式文件 -->
+    <link href="{% static 'appa.css' %}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="/static/amazeui/assets/js/jquery.min.js"></script>
+    <!-- amazeui.js app.js -->
+    <script src="/static/amazeui/assets/js/amazeui.min.js"></script>
+
+
+</head>
+<body>
+
+<header class="am-topbar am-topbar-fixed-top">
+
+  <div class="am-g am-g-fixed blog-g-fixed">
+      <h1 class="am-topbar-brand am-center">
+        <a href="{% url '' %}">CrazyZs_Blog</a>
+      </h1>
+
+      <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+              data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+          class="am-icon-bars"></span>
+      </button>
+
+      <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav">
+            <li class="{% if page_url == '/' %}am-active{% endif %}"><a href="{% url '' %}"><b>Home</b></a></li>
+            <li class="{% if page_url == '/?c=1' %}am-active{% endif %}"><a href="{% url '' %}?c=1"><b>Python</b></a></li>
+            <li class="{% if page_url == '/?c=2' %}am-active{% endif %}"><a href="{% url '' %}?c=2"><b>Django</b></a></li>
+{#            <li class="{% if page_url == '/?c=6' %}am-active{% endif %}"><a href="{% url '' %}?c=6">About me</a></li>#}
+
+        </ul>
+        <form class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" action="{% url '' %}">
+
+          <div class="am-form-group">
+            <input type="text" class="am-form-field am-input-sm bosiinput" placeholder="Python Django" name="s">
+          </div>
+          <button type="submit" class="am-btn am-btn-warning am-btn-sm">
+            <i class="am-icon-search"></i>
+            </button>
+        </form>
+      </div>
+  </div>
+</header>
+ <div class="site-topimg am-g">
+
+  <img src="{% url 'media' siteinfo.site_topimage %}" class="am-img-responsive am-center" alt=""/>
+</div>
+<div class="am-g am-g-fixed blog-g-fixed">
+  <div class="am-u-md-8">
+    {% block article %}
+
+  {% endblock article %}
+
+  </div>
+
+
+
+</div>
+
+<div class="footer-top">
+    <div class="am-g blog-g-fixed">
+        <div class="am-u-md-3">
+            <h2 class="site-fd am-text-center"><a href="#" target="_blank" class="am-link-muted">Powered By</a></h2>
+            <ul class="site-links">
+                {% autoescape off %}
+                {{ siteinfo.site_powered }}
+              {% endautoescape %}
+            </ul>
+          </div>
+        <div class="am-u-md-3">
+            <h2 class="site-fd am-text-center"><a href="#" target="_blank" class="am-link-muted">Links</a></h2>
+                <ul class="site-social">
+                  {% autoescape off %}
+                  {{ siteinfo.site_links }}
+                {% endautoescape %}
+
+                </ul>
+        </div>
+      <div class="am-u-md-6">
+        <h2 class="site-fd am-text-center"><a href="#" target="_blank" class="am-link-muted">Contact me</a></h2>
+        {% autoescape off %}
+        {{ siteinfo.site_contact }}
+      {% endautoescape %}
+
+      </div>
+
+    </div>
+</div>
+<footer class="blog-footer am-g">
+  {% autoescape off %}
+  {{ siteinfo.site_footer }}
+{% endautoescape %}
+</footer>
+
+  <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="回到顶部">
+        <span class="am-gotop-title">回到顶部</span>
+          <i class="am-gotop-icon am-icon-chevron-up"></i>
+    </a>
+  </div>
+
+
+
+
+<script src="/static/app.js"></script>
+
+<!-- particles.js lib (JavaScript CodePen settings): https://github.com/VincentGarreau/particles.js -->
+
+
+</body>
+</html>
